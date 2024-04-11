@@ -106,7 +106,7 @@ total_invested = 0
 total_current_value = 0
 
 def lifetime_high(ticker_symbol):
-    stock_data = yf.Ticker(ticker_symbol)
+    stock_data = yf.Ticker(ticker_symbol + ".NS")
     historical_prices = stock_data.history(period="max")["Close"]
 
     lifetime_high_price = historical_prices.max()
