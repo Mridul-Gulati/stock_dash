@@ -146,7 +146,7 @@ def fetch_data_from_google_sheets_h(_secrets):
         except Exception as e:
             st.error(f"An error occurred: {e}")
             st.stop()
-
+@st.cache_data(ttl = 25200)
 def fetch_data_from_google_sheets(_secrets):
     with st.spinner("Fetching data from Google Sheets..."):
         try:
@@ -165,13 +165,16 @@ def fetch_data_from_google_sheets(_secrets):
             spreadsheet_key = _secrets["connections"]["gsheets"]["spreadsheet"]
             
             all_data = {}
+            cnt = 0
             for cmp_symbol in _secrets["connections"]["gsheets"]["worksheets"].values():
                 sheet = client.open_by_key(spreadsheet_key).worksheet(cmp_symbol)
                 data = sheet.get_all_values()
                 df = pd.DataFrame(data)
                 df = pd.DataFrame(data[1:], columns=data[0])
                 all_data[cmp_symbol] = df
-            
+                cnt += 1
+                if cnt % 23 == 0:
+                    time.sleep(105)
             return all_data
         
         except Exception as e:
