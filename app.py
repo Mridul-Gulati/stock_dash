@@ -173,7 +173,7 @@ def fetch_data_from_google_sheets(_secrets):
                 df = pd.DataFrame(data[1:], columns=data[0])
                 all_data[cmp_symbol] = df
                 cnt += 1
-                if cnt % 20 == 0:
+                if cnt % 15 == 0:
                     time.sleep(105)
             return all_data
         
