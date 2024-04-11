@@ -118,7 +118,7 @@ while True:
     investment_total = pd.DataFrame(columns=['Total Investment','Current Value','ROI','Gain'])
     investment_individual = pd.DataFrame(columns=["Stock",'Buy Avg', 'Qty','CMP', 'ROI','Gain','Total Investment','Current Value'])
     sell = pd.DataFrame(columns=['Stock', 'Price', 'Qty.', 'Age', 'CMP', 'Gain%', 'Amount'])
-    buy = pd.DataFrame(columns=['Stock','Down%', 'Down_LB%',"LTH", 'Down_LTH%' 'CMP', 'LB','Amount', 'Qty'])
+    buy = pd.DataFrame(columns=['Stock','Down%', 'Down_LB%',"LTH", 'Down_LTH%','CMP', 'LB','Amount', 'Qty'])
     if time.time() - st.session_state.last_analysis_time >= 0:
         st.session_state.last_analysis_time = time.time()
         stocks = list(st.session_state.all_data.keys())
